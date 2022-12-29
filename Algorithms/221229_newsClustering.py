@@ -10,11 +10,14 @@ from string import punctuation
 집합 A와 집합 B가 모두 공집합일 경우에는 나눗셈이 정의되지 않으니 따로 J(A, B) = 1로 정의한다.
 """
 
-# str1 = "aa1+aa2"
-# str2 = "AAAA12"
+str1 = "aa1+aa2"
+str2 = "AAAA12"
 
-str1 = "handshake"
-str2 = "shake hands"
+# str1 = "handshake"
+# str2 = "shake hands"
+
+# str1 = 'France'
+# str2 = 'french'
 
 
 
@@ -37,16 +40,21 @@ def newsClustering(str1, str2):
     print(str1_list, str2_list)
     print(len(str1_list), len(str2_list))
 
+    if len(str1_list) + len(str2_list) == 0:
+        return 65536
+
     count_common = 0
     for element in str1_list:
         if element in str2_list:
+            str2_list.remove(element)    #여기 부분으로 hidden case 해결. 
             count_common += 1
+        print(str2_list)
 
-    count_total = len(str1_list) + len(str2_list) - count_common
+    count_total = len(str1_list) + len(str2_list)
     print(count_common, count_total)
 
-    if count_total == 0:
-        return 65536 * 1
+    # if count_total == 0:
+    #     return 65536 * 1
 
     similarity =  count_common / count_total
 
