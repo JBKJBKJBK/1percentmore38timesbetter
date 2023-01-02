@@ -47,3 +47,10 @@ answer = tuple(int(num) for num in sorted_result)
 
 # target_list = [int(num) for num in target]
 # print(tuple(target_list))
+
+#---- lambda test ----
+# dict = {'2': 4, '1': 3, '3': 2, '4': 1}
+# print(sorted(dict))
+
+# test = lambda x:result[x]
+# print(test)
