@@ -15,7 +15,7 @@ def calculation(value):
     print('check')
     if value[0] == '1':
         print('check1')
-        stack.insert(0, value[1])    #특정 위치 원소 추가
+        stack.insert(0, int(value[1]))    #특정 위치 원소 추가
         return stack
 
     elif value[0] == '2':
@@ -54,6 +54,7 @@ for i in range(N):
     # print(order)
 
     stack = calculation(order)
-    print(stack)
+    if int(order[0])>=5:
+            print(stack)
 
 # print(stack)
