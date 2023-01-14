@@ -1,17 +1,17 @@
-n, k = 437674, 3
+n, k = 110011, 10
 
 def changeNumSys(n, k):
     # print(n, k)
     kSys = []
-    print('noloop')
-    i = 0
+    # print('noloop')
     while True:
-        print('check')
+        # print('check')
         quotient = n//k
         remainder = int(n%k)
-        print(quotient, remainder)
-        i += 1
+        # print(quotient, remainder)
+
         if quotient < k:
+            kSys.insert(0, remainder)
             kSys.insert(0, quotient)
             break
         kSys.insert(0, remainder)
@@ -19,4 +19,21 @@ def changeNumSys(n, k):
 
     return kSys
 
-print(changeNumSys(n, k))
+def splitNum(arr):
+    primeNum = []
+    tempNum = ''
+    for num in arr:
+        if num == 0:
+            if len(tempNum)>0 and tempNum != '1':
+                primeNum.append(tempNum)
+            tempNum = ''
+        else:
+            tempNum += str(num)
+        print(tempNum, primeNum)
+    primeNum.append(tempNum)
+    return primeNum
+
+kSys = changeNumSys(n, k)
+print(kSys)
+print(splitNum(kSys))
+
