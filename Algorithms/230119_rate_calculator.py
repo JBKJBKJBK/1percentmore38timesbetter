@@ -50,5 +50,7 @@ while len(perimeter_max)<total_days:
 max_savings = cal_savings(perimeter_max, total_days)
 print('앞으로 모을 수 있는 최대 금액은 ', round(0.0001*max_savings, 1), "만원입니다.")
 # print(fail_days)
-print('이 경우 모은 원금은 ', round(0.0001*(10000*(total_days-fail_days)+5000*(fail_days+1)), 1), '만만원입니다.')
-print('이 경우 받을 수 있있는 이자는 ', round(0.0001*(max_savings-10000*(total_days-fail_days)-5000*(fail_days+1)), 1), '만원입니다.')
+original_savings = 10000*(total_days-fail_days)+5000*(fail_days+1)
+interest = max_savings - original_savings
+print('이 경우 모은 원금은 ', round(0.0001*original_savings, 1), '만원입니다.')
+print('이 경우 받을 수 있있는 이자는 ', round(0.0001*interest, 1), '만원입니다.')
