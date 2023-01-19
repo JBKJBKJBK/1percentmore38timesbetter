@@ -17,7 +17,8 @@ print("미션 시작한 지 ", current_day, "일째 입니다.")
 success_days = count_success(perimeter)
 fail_days = current_day - success_days
 print('미션 성공일 수는 ', success_days, '일입니다.')
-print('현재까지 모은 원금은 ', round(0.0001*(10000*success_days+5000*(fail_days+1)),1), '원입니다.')
+current_original = 10000*success_days+5000*(fail_days+1)
+print('현재까지 모은 원금은 ', round(0.0001*current_original,1), '만원입니다.')
 
 def saving_temp(num_steps, left_days):
     if num_steps >= 10000:
