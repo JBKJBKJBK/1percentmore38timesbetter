@@ -36,19 +36,21 @@ def solution(N, stages):
         # print(notPassed)
     # for stage in stages:
     #     notPassed[stage] += 1
-    for i in range(1, N+1):
+    # for i in range(1, N+1):
         challengers[i+1] = challengers[i] - notPassed[i]
         failures[i] = notPassed[i] / challengers[i]
+        print(failures)
 
-    answer = []
-    while True:
-        if len(failures) < 1:
-            break
-        maxVal = max(failures,key=failures.get) 
-        answer.append(maxVal)
-        del failures[maxVal]
+    # answer = []
+    # while True:
+    #     if len(failures) < 1:
+    #         break
+    #     maxVal = max(failures,key=failures.get) 
+    #     answer.append(maxVal)
+    #     del failures[maxVal]
+    # print(sorted(failures,key=lambda x:failures[x], reverse=True))
     
-    return answer
+    return sorted(failures,key=lambda x:failures[x], reverse=True)
 
 N = 5
 stages = [2, 1, 2, 6, 2, 4, 3, 3]
