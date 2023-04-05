@@ -5,28 +5,27 @@ def solution(s):
     answer = ''
     i = 1
 
-    while i<12:    
+    while True:    
         if len(s) == 0:
             return int(answer)
-        else:
-            word = s[:i]
-            # print(word)
-            if word in numList:
-                answer += word
-                s = s[i:]
-                i = 1
-                # print(':)', s)
-                continue
-            elif word in numStr:
-                # print('W',word)
-                num = numStr.index(word)
-                # print('#', num)
-                answer += str(num)
-                # print('A',answer)
-                s = s[i:]
-                i = 1
-                # print(':P', s)
-                continue
+        word = s[:i]
+        # print(word)
+        if word in numList:
+            answer += word
+            s = s[i:]
+            i = 1
+            # print(':)', s)
+            continue
+        elif word in numStr:
+            # print('W',word)
+            num = numStr.index(word)
+            # print('#', num)
+            answer += str(num)
+            # print('A',answer)
+            s = s[i:]
+            i = 1
+            # print(':P', s)
+            continue
 
         i += 1
 
