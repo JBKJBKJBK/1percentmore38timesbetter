@@ -23,25 +23,19 @@ def solution(msg):
     # print(values, type(values))
     answer = []
 
-    for i in range(len(msg)-1):                         #마지막 알파벳 한 글자는 초기 dict에 포함
+    for i in range(len(msg)-1):
         curr_word = msg[i]
         next_letter = msg[i+1]
         # print(Check_Dict(curr_word, values))
-        idx = i                                         # current : i, next : i+1 (초기)
+    
         while Check_Dict(curr_word, values):            #value에 현재 선택 문자 있을 시,
-            answer.append(values.index(curr_word)+1) 
-            print('1: ', curr_word, next_letter) #현재 문자 인덱스 출력 , +1 주의
-
-            if idx >= len(msg)-2:
-                print(idx, 'break')
-                break
+            answer.append(values.index(curr_word)+1)    #현재 문자 인덱스 출력 , +1 주의
             curr_word += next_letter                    #현재 + 다음
-            next_letter = msg[idx+2]                      #다음 문자 준비
-            print('2: ', curr_word, next_letter)
-
+            # print(curr_word)
+            print('index : ', values.index(next_letter)+1)
+            next_letter = msg[values.index(next_letter)+1]    #다음 문자 준비
+            print('더할 문자: ', curr_word, next_letter)
             print(Check_Dict(curr_word, values))
-            idx += 1
-        print('while 반복 끝')
         Add_Dict(dictionary, curr_word)
 
     return dictionary, answer
