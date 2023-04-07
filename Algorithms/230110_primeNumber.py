@@ -1,5 +1,16 @@
 n, k = 110011, 10
 
+def checkPrime(num):
+    for i in range(2, num):
+        print(i)
+        if num%i == 0:
+            return False
+    return True
+
+print(checkPrime(11))
+print(checkPrime(10))
+
+
 def changeNumSys(n, k):
     # print(n, k)
     kSys = []
@@ -18,6 +29,7 @@ def changeNumSys(n, k):
         n = quotient
 
     return kSys
+    
 
 def splitNum(arr):
     primeNum = []
@@ -29,11 +41,11 @@ def splitNum(arr):
             tempNum = ''
         else:
             tempNum += str(num)
-        print(tempNum, primeNum)
+        # print(tempNum, primeNum)
     primeNum.append(tempNum)
     return primeNum
 
 kSys = changeNumSys(n, k)
-print(kSys)
-print(splitNum(kSys))
+# print(kSys)
+# print(splitNum(kSys))
 
