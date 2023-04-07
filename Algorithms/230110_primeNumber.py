@@ -1,10 +1,16 @@
 # n, k = 110011, 10
+import re
+from tabnanny import check
+
+
 n, k = 437674, 3
 
 # ---- 230407  10진법 소수 확인 함수 추가 ---- #
 def checkPrime(num):
     if num == 1 or num == 0:
         return False
+    # elif num == 2:
+    #     return True
     for i in range(2, num):
         if num%i == 0:
             return False
@@ -12,7 +18,7 @@ def checkPrime(num):
 
 # print(checkPrime(11))
 # print(checkPrime(10))
-
+"""
 def changeNumSys(n, k):
     # print(n, k)
     kSys = []
@@ -36,7 +42,7 @@ def changeNumSys(n, k):
 n, k = n, k = 437664, 3
 n, k = n, k = 437, 2
 # print(changeNumSys(n, k))
-    
+
 # ---- ValueError: invalid literal for int() with base 10: ''  ----
 # def splitNum(arr):
 #     primeNum = []
@@ -63,7 +69,6 @@ def splitNum(arr):
             if checkPrime(tempNum) :
                 print("check and add")
                 primeNum.append(tempNum)
-                #ValueError: invalid literal for int() with base 10: ''
             tempNum = 0
         else:
             print('tempNum B = ', tempNum)
@@ -82,6 +87,45 @@ def solution(n, k):
     primes = splitNum(kSys)
     print('primeNum : ', primes)
     return len(primes)
+"""
+
+# ---- 함수 합치기 230408 ----
+
+def solution(n, k):
+    temp, i = 0, 1
+    primes = []
+
+    while True:
+        quotient = n//k
+        remainder = int(n%k)
+        # quotient, remainder = divmod(n, k)
+
+        if remainder == 0 :
+            if checkPrime(temp):
+                primes.append(temp)
+                # print('primes : ', primes)
+            temp, i = 0, 1
+        else:     
+            temp += remainder * i
+            i *= 10
+
+        # print('q & r : ', quotient, remainder)
+        # print('T & i : ',temp, i)
+        # print('------------------')
+        
+        n = quotient
+        if quotient < k:
+            temp += quotient * i
+            # print(temp)
+            if checkPrime(temp):
+                primes.append(temp)
+                # print('primes L : ', primes)
+            break
+
+    # print(primes)
+    return len(primes)
+
+
 
 # kSys = changeNumSys(n, k)
 # primes = splitNum(kSys)
