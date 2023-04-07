@@ -128,18 +128,20 @@ def playedInfo(info):
     return time, listInfo[2], playedMelody
 
 def solution(m, musicinfos):
-    answer = [0, '(None)']
+    answer = [0, (None)]
     m = replaceHigh(m)
     for info in musicinfos:
         played = playedInfo(info)
         print('here: ' , played)
+        # if played[0] == 0:
+        #     return '(None)'
         # answer = played
         # test = m+'#'
         # print(test)
-        if m in played[2] and m+'#' not in played[2]:
+        if m in played[2]:
             print('1: ', answer)
             if answer[0] < played[0] :
-                print('재생시간')
+                print('재생시간 비교')
                 answer = played
                 print('2: ', answer)
     # if answer == '(None)':
