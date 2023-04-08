@@ -1,8 +1,5 @@
+import math
 # n, k = 110011, 10
-import re
-from tabnanny import check
-
-
 n, k = 437674, 3
 
 # ---- 230407  10진법 소수 확인 함수 추가 ---- #
@@ -11,10 +8,12 @@ def checkPrime(num):
         return False
     # elif num == 2:
     #     return True
-    for i in range(2, num):
+    for i in range(2, int(math.sqrt(num))+1):
         if num%i == 0:
             return False
     return True
+# ---- 만약 숫자가 엄청 큰 소수라면 시간 오래 걸릴 듯 ----
+
 
 # print(checkPrime(11))
 # print(checkPrime(10))
