@@ -45,7 +45,10 @@ def solution(n, t, m, p):
     myAnswer = ""
     answers = allAnswers(n, t*m)
     print('answers :', answers)
-    for i in range(len(answers)-1):
+    for i in range(len(answers)-2):
+        # 2, 4, 5, 11, 14 번
+        if len(myAnswer) >= t:
+            break
         if i%m == p-1 :
             print(i, m, 'i%m = ', i%m)
             print(answers[i])
