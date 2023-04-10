@@ -53,8 +53,12 @@ def solution(msg):
     values = list(dictionary.values())    # 형 변환 필요
     answer = []
 
+    if len(msg) == 1:
+        answer.append(values.index(msg)+1)
+        return answer
+
     i = 0
-    while i <= len(msg)-2:
+    while i <= len(msg)-2 :
         # print('=================')
         curr_word = msg[i]
         next_letter = msg[i+1]
@@ -87,12 +91,14 @@ def solution(msg):
             answer.append(values.index(msg[i])+1)
 
         # print('answer : ', answer)
-        # print('dict : ', dictionary)
+        print('dict : ', dictionary)
         # print(i)
     
     return answer
 
 
 # msg = "TOBEORNOTTOBEORTOBEORNOT"
-msg = "KAKAO"
+# msg = "KAKAO"
+msg = "A"
+# msg = "ABAB"
 print(solution(msg))
