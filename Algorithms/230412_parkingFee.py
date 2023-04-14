@@ -31,8 +31,8 @@ def solution(fees, records):
             print(info[car_number])
         elif record[2] == "OUT":
             print(type(info[car_number]))
-            # info[car_number].append(record[0])    # list에 append를 했는데 추가가 아니라 바뀌네...
-            info[car_number].insert(-1, record[0])    # 이러니까 추가됨!
+            info[car_number].append(record[0])    # list에 append를 했는데 추가가 아니라 바뀌네...
+            # info[car_number].insert(-1, record[0])    # 이래도 안됨...
             # T_out = info[car_number][1]
             print(info[car_number])
             # print("In at {T_in}, Out at {T_out}".format(T_in, T_out))
