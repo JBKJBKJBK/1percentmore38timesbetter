@@ -41,6 +41,17 @@ def allAnswers(n, turns):
 
 # print(allAnswers(n, t*m))
 
+# 230415 ㅈㅐ구ㅣ호출 사용
+# n : n 진법
+# i = 0
+def recursiveAllAnswers(n, i = 0, turns):
+    temp = changeSys(n, i)
+    answers = temp + recursiveAllAnswers(n, i+1, turns)
+    if len(answers) > turns:
+        return answers
+
+print(recursiveAllAnswers(2, 0, 10))
+
 def solution(n, t, m, p):
     myAnswer = ""
     answers = allAnswers(n, t*m)
@@ -55,6 +66,6 @@ def solution(n, t, m, p):
             myAnswer += answers[i]
     return myAnswer
 
-print(solution(n, t, m, p))
+# print(solution(n, t, m, p))
 
 
