@@ -43,7 +43,7 @@ def allAnswers(n, turns):
 
 def solution(n, t, m, p):
     myAnswer = ""
-    answers = allAnswers(n, 0, 0, t*m)
+    answers = allAnswers(n, t*m)
     # print('answers :', answers)
     for i in range(len(answers)-2):
         # 2, 4, 5, 11, 14 번
