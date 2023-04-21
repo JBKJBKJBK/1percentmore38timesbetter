@@ -23,21 +23,21 @@ def solution(fees, records):
         # info[car_number] = ["T_in", "T_out", "calTime", "Fee"]
         # default = ["T_in", "T_out", "calTime", "Fee"]
         # info[car_number] = default
-        info[car_number] = []
+        # info[car_number] = []
         # T_in, T_out, time, fee = default    # 이거 순서!!!
         if record[2] == "IN":
             info[car_number] = [record[0]]
             T_in = info[car_number][0]
-            print(info[car_number])
+            print('1' , info[car_number], T_in)
         elif record[2] == "OUT":
             print(type(info[car_number]))
             info[car_number].append(record[0])    # list에 append를 했는데 추가가 아니라 바뀌네...
             # info[car_number].insert(-1, record[0])    # 이래도 안됨...
             # T_out = info[car_number][1]
-            print(info[car_number])
             # print("In at {T_in}, Out at {T_out}".format(T_in, T_out))
-            # time = calTime(T_in, T_out)
-            # info[car_number].append(time)
+            time = calTime(info[car_number][0], info[car_number][1])
+            info[car_number].append(time)
+            print(info[car_number])
         print('--------------')
     print(info)
 
