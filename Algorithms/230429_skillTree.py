@@ -4,7 +4,7 @@ def skillDict(skill):
         skillDict[skill[i]] = i
     return skillDict
         
-
+"""
 def solution(skill, skill_trees):
     dict = skillDict(skill)
     keys = dict.keys()
@@ -39,7 +39,10 @@ def solution(skill, skill_trees):
         print(f'----answer {answer}----')
         
     return answer
+"""
 
+def solution(skill, skill_trees):
+    return
 
 skill = "CBD"
 skill_trees = ["BACDE", "CBADF", "AECB", "BDA"]	
