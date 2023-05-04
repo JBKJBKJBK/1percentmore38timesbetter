@@ -1,5 +1,5 @@
 import math
-import numpy as np
+# import numpy as np
 
 # n : 전파 안 닿는 건물 수
 # w : 닿는 거리
@@ -16,14 +16,25 @@ def solution(n, stations, w):
 
     for i in range(len(stations)):
         already.append([stations[i]-w, stations[i]+w])
+        print(f'already {already}')
         if i == 0: 
             gap = already[i][0] - 1
+            print(f'if : {gap}')
+        # elif i == len(stations)-1:
+        #     gap = n - already[i][1]
+        #     print(f'if + : {gap}')
         else:
             gap = already[i][0] - already[i-1][1] - 1
-        print(f'gap {gap}')
+            print(f'else {gap}')
+        
         if gap > 0:
             noStation.append(gap)
-    print(f'already {already}')
+
+    gap = n - already[i][1]
+    print(f'if + : {gap}')
+    if gap > 0:
+        noStation.append(gap)
+    # print(f'already {already}')
     print(f'noStaion {noStation}')
 
     answer = 0
@@ -35,8 +46,6 @@ def solution(n, stations, w):
 
 # -------- 230429 2차 시도 --------
 """ 
-import math
-
 # n : 전파 안 닿는 건물 수
 # w : 닿는 거리
 # ------+----
@@ -86,6 +95,10 @@ def solution(n, stations, w):
 n = 11
 stations = [4, 11]
 w = 1
+
+n = 16
+stations = [9]
+w = 2
 
 print(solution(n, stations, w))
 # print(4 in (3, 6))        #false
