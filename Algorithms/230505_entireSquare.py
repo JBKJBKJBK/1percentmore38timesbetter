@@ -6,7 +6,7 @@ def solution(w,h):
     
     # 배수 약수 관계
     elif w%h == 0 or h%w == 0:
-        return total - h
+        return total - max(w, h) 
     
     # w, h 모두 짝수
     elif w%2 == 0 and h%2 == 0:
