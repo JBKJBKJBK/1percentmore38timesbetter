@@ -9,7 +9,7 @@ def pickMax(list1, list2):
     return max(set1.intersection(set2))
 
 # print(pickMax([1, 2, 3, 4], [3, 4, 5]))
-
+"""
 def findSumList(sampleList):
     sumList = []
     L = len(sampleList)
@@ -18,10 +18,33 @@ def findSumList(sampleList):
         print('here', sum(sampleList[:i+1]))
         sumList.append(sum(sampleList[:i+1]))
     return sumList
-
+"""
 # print(findSumList(3, [1, 2, 3]))
 
-# sumList 다 구한 다음에 최댓값 구하는 거 말고 최대값부터 비교하면서 같은 거 나오면 반환하는 거...!?
+# 시간 초과!! >>> sumList 다 구한 다음에 최댓값 구하는 거 말고 최대값부터 비교하면서 같은 거 나오면 반환하는 거...!?
+def findSumList(sample1, sample2):
+    # sample1의 길이가 더 길게
+    sum1, sum2 = [], []
+    L1, L2 = len(sample1), len(sample2)
+    
+    i, j = L1, L2
+
+    while i > 0:
+        # print(f'i is {i} j is {j}')
+        sum1.append(sum(sample1[:i]))
+        if j > 0:
+            sum2.append(sum(sample2[:j]))
+        # print('here', sum1, sum2)
+        result = pickMax(sum1, sum2)
+        if result > 0:
+            # print(result, 'break')
+            break
+        i -= 1
+        j -= 1
+        
+    # print('here', sum1, sum2)
+
+    return result
 
 def solution(cookie):
     L = len(cookie)
@@ -30,15 +53,20 @@ def solution(cookie):
     for i in range(L-1):    
         left = cookie[: i+1]
         right = cookie[i+1:]
-        print(f'left {left}, reverse{list(reversed(left))} right {right}')
+        # print(f'reverse{list(reversed(left))} right {right}')
 
-        leftSum = findSumList(list(reversed(left)))
-        rightSum = findSumList(right)
+        if i <= int(L/2)-1:
+            test = findSumList(right, list(reversed(left)))
+        else:
+            test = findSumList(list(reversed(left)), right)
 
-        maxi = pickMax(leftSum, rightSum)
-        print(f'maxi is {maxi}')
-        if maxi > answer and maxi:
-            answer = maxi
+        if test > answer:
+            answer = test
+
+        # maxi = pickMax(leftSum, rightSum)
+        # print(f'maxi is {maxi}')
+        # if maxi > answer and maxi:
+        #     answer = maxi
 
         print('-----')
     return answer
