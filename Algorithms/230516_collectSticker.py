@@ -10,36 +10,41 @@
 # 양 옆 0으로 바꾸자
 
 import operator
+import copy
 
 def step(sticker):
+    temp = copy.deepcopy(sticker)    # 오호 deepcopy
     result = 0
     
-    while sum(sticker) > 0:
-        maxi = max(sticker)
+    while sum(temp) > 0:
+        maxi = max(temp)
         print(f'maximum number is {maxi}')
         result += maxi
-        idx = operator.indexOf(sticker, maxi)
+        idx = operator.indexOf(temp, maxi)
         print(f'index of maxi is {idx}')
-        sticker[idx], sticker[idx-1], sticker[idx+1] = 0, 0, 0 
-        print(f'sticker is {sticker}')
-    print('------------------')
+        temp[idx], temp[idx-1]= 0, 0
+        if idx < len(sticker)-1:
+            temp[idx+1] = 0
+        print(f'temp is {temp}, original is {sticker}')
+        print(f'------{result}------')
     return result
     
 def solution(sticker):
-    original = sticker
     excluded = 0
     answer = 0
-    print(f'excl {excluded}, sticker {original}, ans {answer}')
     
-    while excluded < sum(original):
+    while excluded < sum(sticker):
+        tempSticker = sticker
+        result = step(tempSticker)
+        print(f'result {result}')
+        if answer < result :
+            answer = result 
         print(f'answer {answer}')
-        if answer < step(original):
-            answer = step(original)
-        print(f'sticker! {sticker}, original! {original}')
+    
         idx = operator.indexOf(sticker, max(sticker))
         excluded += max(sticker)
-        original[idx] = 0
-        print(f'sticker!!! {sticker}, original!!! {original}')
+        sticker[idx] = 0
+        print(f'sticker!!! {sticker}')
 
     return answer
 
