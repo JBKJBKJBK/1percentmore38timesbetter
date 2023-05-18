@@ -49,5 +49,8 @@ def solution(sticker):
     return answer
 
 
+# 23.05.18 시간 단축을 위한 새로운 로직을 생각해보자.
+
+
 sticker = [14, 6, 5, 11, 3, 9, 2, 10]
 print(solution(sticker))
