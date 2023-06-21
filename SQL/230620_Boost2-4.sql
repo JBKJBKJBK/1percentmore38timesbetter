@@ -40,3 +40,6 @@ insert into 회원테이블 values (1001, '나', '2023-06-20', 1);
 commit;
 
 select * from 회원테이블;
+
+
+/* 임시저장 (SAVEPOINT) : rollback 저장점을 지정 */
