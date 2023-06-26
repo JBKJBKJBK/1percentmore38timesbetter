@@ -68,3 +68,20 @@ select A.* , B.ORDER_NO  -- 차이점
 
 -- 임시 테이블 조회
 select * from CUSTOMER_SALES_INNER_JOIN
+
+---------------------------------------
+select *
+    from CUSTOMER_SALES_INNER_JOIN
+    where GENDER = 'MAN';
+
+select ADDR, count(ORDER_NO) as 구매횟수
+    from CUSTOMER_SALES_INNER_JOIN
+    where GENDER = 'MAN'
+    group by ADDR; 
+
+-- 구매횟수 100회 미만 필터링
+select ADDR, count(ORDER_NO) as 구매횟수
+    from CUSTOMER_SALES_INNER_JOIN
+    where GENDER = 'MAN'
+    group by ADDR
+    having count(ORDER_NO) < 100;
