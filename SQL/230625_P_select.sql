@@ -4,7 +4,9 @@
 
 select count(USER_ID) from USER_INFO
     where (JOINED >= '2021-01-01' and JOINED <= '2021-12-31') 
+    where JOINED between '2021-01-01' and '2021-12-31'
         and (AGE >= 20 and AGE <= 29)
+        and AGE between 20 and 29;
 
 /* 역순 정렬하기 */
 
