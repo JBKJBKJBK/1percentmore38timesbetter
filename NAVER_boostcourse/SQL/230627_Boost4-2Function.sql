@@ -35,7 +35,7 @@ select year(JOIN_DATE) as 가입연도
     group by year(JOIN_DATE), ADDR
     with rollup;
 
-/*  ROLL UP
+/*  ROLL UP : 가입, 소계, 합계 나옴
      가입연도\ADDR | 경기 | 강원 | 대구 | ... | 소계
     -------------------------------------------
         2020     | 가입 | 가입 | 가입 | ... | 소계
@@ -45,3 +45,47 @@ select year(JOIN_DATE) as 가입연도
     -------------------------------------------
         소 계     | 가입 | 가입 | 가입 | ... | 합계
 */
+
+select MEM_NO
+        , sum(SALES_QTY) as 구매수량
+    from SALES
+    group by MEM_NO;
+
+/*
+    윈도우 함수 : 행과 행간의 관계 >> 순위나 누적 집계
+    _ 순위 함수 _ row_number : 고유한 순위 반환
+              _ rank       : 동일한 값이면 동일한 순위 반환 >> 1, 2, 2, 4, ...
+              _ dense_rank : 동일한 값이면 동일한 순위 반환, 하나의 등수로 >> 1, 2, 2, 3, ...
+    _ 집계 함수 _ count
+      (누적    _ sum
+              _ avg
+              _ max/min
+
+    over(order by 열/ partition by 열)
+*/
+
+select ORDER_DATE
+        , row_number() over (order by ORDER_DATE asc) as 고유한_순위_변환
+        , rank()       over (order by ORDER_DATE asc) as 동일한_순위_변환
+        , dense_rank() over (order by ORDER_DATE asc) as 동일한_순위_변환, 숫자 바로 이어서
+    from SALES;
+
+select ORDER_DATE
+        , row_number() over (partition by ORDER_DATE asc) as 고유한_순위_변환
+        , rank()       over (partition by ORDER_DATE asc) as 동일한_순위_변환
+        , dense_rank() over (partition by ORDER_DATE asc) as 동일한_순위_변환, 숫자 바로 이어서
+    from SALES;
+
+-- ?? order / partition 차이 ??
+-- >> ORDER_DATE 여러 개 / ORDER_DATE 하나로 합침
+
+select ORDER_DATE
+        , SALES_QTY
+        , '-' as 구분
+        -- 날짜가 증가함에 따라 count 누적 
+        , count(ORDER_NO) over (order by ORDER_DATE asc) as 누적_구매횟수
+        , sum(SALES_QTY)  over (order by ORDER_DATE asc) as 누적_구매수량
+        , avg(SALES_QTY)  over (order by ORDER_DATE asc) as 누적_평균구매수량
+        , max(SALES_QTY)  over (order by ORDER_DATE asc) as 
+        , min(SALES_QTY)  over (order by ORDER_DATE asc) as 
+    from SALES;
