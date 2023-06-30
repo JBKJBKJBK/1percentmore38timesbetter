@@ -45,5 +45,45 @@ create temporary table CUSTOMER_PUR_INFO_AGEBAND as
     left join CUSTOMER_AGEBAND as B 
     on A.MEM_NO = B.MEM_NO;
     
+/* 회원 및 카테고리별 구매횟수 순위 */
+select A.MEM_NO
+        , B.CATEGORY
+        , count(A.ORDER_NO) as 구매횟수
+        , row_number() over (partition by A.MEM_NO order by count(A.ORDER_NO) desc) as 구매횟수_순위
+    from SALES as A 
+    left join product as B 
+    on A.PRODUCT_CODE = B.PRODUCT_CODE
+    group by A.MEM_NO
+            , B.CATEGORY;
 
+/* 회원 및 카테고리별 구매횟수 순위 + 1위만 */
+select *
+    from (
+            select A.MEM_NO
+                    , B.CATEGORY
+                    , count(A.ORDER_NO) as 구매횟수
+                    , row_number() over(partition by A.MEM_NO order by count(A.ORDER_NO) desc) as 구매횟수_순위
+                from SALES as A 
+                left join PRODUCT as B 
+                on A.PRODUCT_CODE = B.PRODUCT_CODE
+                group by A.MEM_NO, B.CATEGORY
+        )as A 
+    where 구매횟수_순위 = 1;
 
+/* 회원 선호 카테고리 임시테이블*/
+
+create temporary table CUSTOMER_PRE_CATEGORY as
+-- (위 내용 복붙)
+
+/* 회원 구매정보 + 연령대 + 선호카테고리 */
+create temporary table CUSTOMER_PUR_INFO_AGEBAND_PRE_CATEGORY as
+select A.*
+        , B.CATEGORY as PRE_CATEGORY
+    from CUSTOMER_PUR_INFO_AGEBAND as A 
+    left join CUSTOMER_PRE_CATEGORY as B 
+    on A.MEM_NO = B.MEM_NO;
+
+-- 데이터마트로 저장!!!
+create table CUSTOMER_MART as
+select *
+    from CUSTOMER_PUR_INFO_AGEBAND_PRE_CATEGORY;
