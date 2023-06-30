@@ -1,3 +1,10 @@
+/* 이름이 없는 동물이 아이디 */
+
+select ANIMAL_ID
+    from ANIMAL_INS
+    where NAME is null
+    order by ANIMAL_ID asc;
+
 /* NULL 처리하기 */
 
 select ANIMAL_TYPE, if(NAME is null, 'No name', NAME) as NAME, SEX_UPON_INTAKE
