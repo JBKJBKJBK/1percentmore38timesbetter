@@ -79,3 +79,14 @@ begin
     set count = count +10;
 end //
 delimiter;
+
+/* procedure 실행 */
+
+set @counter = 1;
+call IN_OUT_PARAMETER(@counter);
+select @counter;
+
+/*
+    view        : 하나 이상의 테이블을 활용하여 사용자가 정의한 가상 테이블
+    procedure   : 매개 변수를 활용하여 사용자가 정의한 작업을 저장
+*/
