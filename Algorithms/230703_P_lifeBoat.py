@@ -1,3 +1,4 @@
+"""
 def checkLimit(arr, new_W, limit):
     # array 안의 숫자 합이 limit 넘을 경우,
     # (못 타는 경우) True
@@ -54,6 +55,21 @@ def solution(people, limit):
     
     
     return len(boat_dict)
+"""
+
+from collections import deque
+def solution(people, limit):
+    answer = 0
+    people.sort()
+    dq = deque(people)
+    while len(dq) > 1:
+        if dq[0] + dq[-1] <= limit:
+            dq.popleft()
+        answer += 1    
+        dq.pop()
+    if dq:
+        answer+= 1
+    return answer
 
 
 people = [70, 50, 80, 50]
