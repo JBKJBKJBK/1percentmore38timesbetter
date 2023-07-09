@@ -1,8 +1,9 @@
 /* 재구매자 및 구매주기 분석 */
 USE NaverBoost;
 
-/*
-	구매간격 = (최근 - 최초) / (구매횟수 - 1)
+/*  정의부터
+	구매간격 = (최근 - 최초)
+    구매주기 = (최근 - 최초) / (구매횟수 - 1)
 */
 SELECT * FROM CUSTOMER; -- A
 SELECT * FROM SALES;    -- B
@@ -36,8 +37,10 @@ SELECT *
 				, MIN(order_date) AS 최초구매
                 , MAX(order_date) AS 최근구매
                 , COUNT(order_no) AS 구매횟수
-                , IF(COUNT(order_no)>1 and datediff(MIN(order_date), MAX(order_date))>=1 ,0,1) AS 재구매
-			FROM SALES
+                , IF(COUNT(order_no)>1 and datediff(MAX(order_date), MIN(order_date))>=1 ,0,1) AS 재구매
+                , datediff(MAX(order_date), MIN(order_date)) AS 구매간격
+                , ((datediff(MAX(order_date), MIN(order_date)))/(COUNT(order_no)-1)) AS 구매주기
+	ㅌ	FROM SALES
         GROUP BY mem_no
 	) AS NW;
     -- GROUP BY mem_no;   
