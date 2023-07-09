@@ -39,8 +39,8 @@ SELECT *
                 , COUNT(order_no) AS 구매횟수
                 , IF(COUNT(order_no)>1 and datediff(MAX(order_date), MIN(order_date))>=1 ,0,1) AS 재구매
                 , datediff(MAX(order_date), MIN(order_date)) AS 구매간격
-                , ((datediff(MAX(order_date), MIN(order_date)))/(COUNT(order_no)-1)) AS 구매주기
-	ㅌ	FROM SALES
+				, datediff(MAX(order_date), MIN(order_date))/(COUNT(order_no)-1) AS 구매주기  -- 구매주기 소수점 있음
+	 	FROM SALES
         GROUP BY mem_no
 	) AS NW;
-    -- GROUP BY mem_no;   
+
