@@ -13,7 +13,7 @@ def solution(operations):
         elif step[0] == "I":
             stepList = step.split(' ')
             # print(stepList)
-            answer.append(stepList[1])
+            answer.append(int(stepList[1]))  # int 추가
             # print(answer)
         # print(f'answer {answer}')    
         
