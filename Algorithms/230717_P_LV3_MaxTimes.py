@@ -1,4 +1,8 @@
 def solution(n, s):
+    return
+
+""" 1차시도 런타임 에러
+def solution(n, s):
     if n == 1:
         return [s]
     
@@ -21,6 +25,7 @@ def solution(n, s):
     print(f'recurrsive list {recurr}')
     
     return answer + recurr
+"""
 
 n, s = 2, 9
 print(solution(n, s))
