@@ -1,5 +1,15 @@
 def solution(n, s):
-    return
+    if int(s/n) == 0:
+        return [-1]
+
+    answer = [int(s/n)+1 for i in range(n)]
+    i = 0
+    while sum(answer) != s:
+        answer[i] -= 1
+        # print(f'{i}th answer is {answer}')
+        i += 1
+
+    return answer
 
 """ 1차시도 런타임 에러
 def solution(n, s):
@@ -28,4 +38,5 @@ def solution(n, s):
 """
 
 n, s = 2, 9
+n, s = 3, 8
 print(solution(n, s))
