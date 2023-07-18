@@ -8,4 +8,4 @@ SELECT A.*
               ) AS B
     ON A.HOST_ID = B.HOST_ID
     WHERE B.등록수 > 1
-    ORDER BY A.ID; 
+    ORDER BY A.ID;
