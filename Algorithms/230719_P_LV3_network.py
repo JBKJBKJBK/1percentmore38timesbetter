@@ -3,6 +3,7 @@
 def solution(n, computers):
     connected = []
     netCount = 0
+    answer = {}
 
     for i in range(n):
         for j in range(n):
@@ -11,13 +12,21 @@ def solution(n, computers):
             if i == j and i not in connected:
                 netCount += 1
                 connected.append(i)
-                print(f'connected {connected}')
+                answer[i] = [i]
+                print(f'answer1 is {answer}')
+                print(f'connected1 {connected}')
             elif i >= j:
                 print('continue')
                 continue
             elif computers[i][j] == 1:
                 netCount -= 1
-                print(f'netCount is {netCount}')
+                print(f'netCount3 is {netCount}')
+                answer[i] = [j]
+                connected.append(j)
+                print(f'answer3 is {answer}')
+                print(f'connected3 {connected}')
+            else:
+                print('nothing happend')
 
     return netCount
 
@@ -55,6 +64,9 @@ def solution(n, computers):
 
 n = 3
 computers = [[1, 1, 0], [1, 1, 1], [0, 1, 1]]
-computers = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+# computers = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+
+# n = 4
+# computers = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
 
 print(solution(n, computers))
