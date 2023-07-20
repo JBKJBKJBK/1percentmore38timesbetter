@@ -1,21 +1,15 @@
-# 정렬?
+# 230720
 # def makeOrder(listSample):
 #     return listSample.sort()
 
-listSample = [3, 4, 2, 6, 8]
+# listSample = [3, 4, 2, 6, 8]
 # sortSample = listSample.sort()
-print(sorted(listSample, reverse=True))
-
-# 230720
-# def maxDiff(list1, list2):
-#     return abs(max(list1)-max(list2))
-
-# print(maxDiff([1, 2, 7], [1, 2]))
+# print(sorted(listSample, reverse=True))
 
 def solution(n, works):
     # answer = 0
 
-    while n > 0:
+    while n > 0:    # 뭔가 더 깔끔하게 정리할 수 있을 듯 한데...
         print(f'----{n}----')
         M = max(works)
 
@@ -27,12 +21,11 @@ def solution(n, works):
             if works[i] == M and n > 0:
                 works[i] -= 1
                 n -= 1
-                # print(works)
             elif n <= 0:
                 break
             else:
                 continue
-            print(f'here! {n}  {works}')
+            # print(f'here! {n}  {works}')
 
         """
         M = max(works)
@@ -47,7 +40,7 @@ def solution(n, works):
         #     works = [works[i]-1 if works[i] == M else num]
         """
 
-    # 변경 >> still 시간 초과
+    # list comprehension 변경 >> still 시간 초과
     answer = sum([num**2 for num in works])
     
     return answer
@@ -72,6 +65,7 @@ def solution(n, works):
     return answer
 """
 
+# test
 n = 4
 works = [9, 1, 3]
 print(solution(n, works))
