@@ -7,17 +7,12 @@ def solution(n, s):
     check = standard * n
     # print(f'standard {standard} and check {check}')
     
-    while True:
-        # print(check)
-        diff = check - s
-        if check == s:
-            break
-        elif check > s:
-            answer = [standard-1 for i in range(diff)] + [standard for i in range(n-diff)]
-        # print(f'{i}th answer is {answer}')
-        check = sum(answer)
+    diff = check - s
+    if check > s:
+        answer = [standard-1 for i in range(diff)] + [standard for i in range(n-diff)]
 
     return answer
+
 
 """ 2차시도 효율성
 def solution(n, s):
