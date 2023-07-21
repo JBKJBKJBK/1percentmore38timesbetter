@@ -64,5 +64,6 @@ def solution(begin, target, words):
 
 begin, target = "hit", "cog"	
 words = ["hot", "dot", "dog", "lot", "log", "cog"]
+words = ["hot", "aot", "big", "bog", "cog", "log"]
 
 print(solution(begin, target, words))
