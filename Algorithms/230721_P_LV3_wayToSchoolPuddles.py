@@ -2,27 +2,25 @@
 import numpy as np
 
 def solution(m, n, puddles):
-    arr = np.ones([n, m], int)
-    print(f'initial {arr}')
-    # arr[0, 0], arr[n-1, m-1] = 0, 0
+    arr = np.ones((n, m), np.int8)
+    arr[0, 0] = 0
+    # print('initial', arr)
 
     for puddle in puddles:
-        # print(puddle, puddle[1], puddle[0])
+        # print(puddle)
+        if len(puddle) == 0:
+            break
         arr[puddle[0]-1, puddle[1]-1]= 0
     
     for i in range(1, n):
         for j in range(1, m):
-            print(f'{i} and {j}, {[i, j]}')
-            # if [i, j] in puddles:
-            #     arr[i-1, j-1] = 0
-            #     print('check1')
-            #     continue
             if arr[i, j] == 0:
-                print('skip')
                 continue
+            # RuntimeWarning: overflow encountered in scalar add
             arr[i, j] = arr[i-1, j] + arr[i, j-1]
-            print(f' check2 {arr}')
-    return arr[n-1, m-1]
+            # print(arr)
+        answer = arr[n-1, m-1]
+    return int(answer)
 
 #### Using Factorial ####
 """
@@ -55,5 +53,8 @@ def solution(m, n, puddles):
 
 
 m, n = 4, 3
-puddles = [[2, 2]]
+puddles = [[2, 2], [2, 3]]
+
+m, n = 8, 6
+puddles = [[]]
 print(solution(m, n, puddles))
