@@ -1,3 +1,35 @@
+#### Using Numpy Array ####
+
+import numpy as np
+
+def solution(m, n, puddles):
+    arr = np.ones((n, m), np.int8)
+    arr[0, 0] = 0
+    arr.tolist()
+    print('initial', arr)
+
+    for puddle in puddles:
+        # print(puddle)
+        if len(puddle) == 0:
+            break
+        arr[puddle[0]-1, puddle[1]-1]= 0
+    
+    for i in range(1, n):
+        for j in range(1, m):
+            if arr[i, j] == 0:
+                continue
+            # RuntimeWarning: overflow encountered in scalar add
+            arr[i, j] = arr[i-1, j] + arr[i, j-1]
+            #	/solution.py:28: 
+            #   RuntimeWarning: overflow encountered in byte_scalars
+            #   arr[i, j] = arr[i-1, j] + arr[i, j-1]
+            print(arr)
+        answer = arr[n-1, m-1]
+    return int(answer)
+
+
+#### Using Factorial ####
+"""
 import math
 
 def calcul(horizon, vertical):
@@ -22,7 +54,13 @@ def solution(m, n, puddles):
     
     return total - passingPuddles
 
+"""
 
-m, n = 4, 3
+
+
+m, n = 4, 8
 puddles = [[2, 2], [2, 3]]
+
+# m, n = 8, 6
+# puddles = [[]]
 print(solution(m, n, puddles))
