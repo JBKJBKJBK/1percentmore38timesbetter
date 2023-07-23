@@ -1,10 +1,12 @@
 #### Using Numpy Array ####
+
 import numpy as np
 
 def solution(m, n, puddles):
     arr = np.ones((n, m), np.int8)
     arr[0, 0] = 0
-    # print('initial', arr)
+    arr.tolist()
+    print('initial', arr)
 
     for puddle in puddles:
         # print(puddle)
@@ -18,9 +20,13 @@ def solution(m, n, puddles):
                 continue
             # RuntimeWarning: overflow encountered in scalar add
             arr[i, j] = arr[i-1, j] + arr[i, j-1]
-            # print(arr)
+            #	/solution.py:28: 
+            #   RuntimeWarning: overflow encountered in byte_scalars
+            #   arr[i, j] = arr[i-1, j] + arr[i, j-1]
+            print(arr)
         answer = arr[n-1, m-1]
     return int(answer)
+
 
 #### Using Factorial ####
 """
@@ -52,9 +58,9 @@ def solution(m, n, puddles):
 
 
 
-m, n = 4, 3
+m, n = 4, 8
 puddles = [[2, 2], [2, 3]]
 
-m, n = 8, 6
-puddles = [[]]
+# m, n = 8, 6
+# puddles = [[]]
 print(solution(m, n, puddles))
