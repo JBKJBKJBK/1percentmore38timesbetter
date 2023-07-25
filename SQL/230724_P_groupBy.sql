@@ -17,7 +17,7 @@ SELECT USER_ID, NICKNAME, SUM(PRICE) AS TOTAL_SALES
     HAVING TOTAL_SALES >= 700000
     ORDER BY TOTAL_SALES;
 
--- 카테고리 별 도서 판매량 집계하기
+-- 카테고리 별 도서 판매량 집계하기 (아직 통과 못함)
 SELECT A.CATEGORY
         , SUM(B.SALES) AS TOTAL_SALES
     FROM BOOK AS A
@@ -25,5 +25,5 @@ SELECT A.CATEGORY
     ON A.BOOK_ID = B.BOOK_ID
     -- WHERE date_format(B.SALES_DATE, '%Y-%m') = '2022-01'
     -- GROUP BY A.CATEGORY
-    -- HAVING date_format(B.SALES_DATE, '%Y-%m') = '2022-01'
+    -- HAVING date_format(B.SALES_DATE, '%Y-%m') = '2022-01'    # 에러 >> where로
     -- ORDER BY TOTAL_SALES;
