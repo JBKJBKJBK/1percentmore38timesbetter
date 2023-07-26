@@ -7,3 +7,14 @@ SELECT CAR_ID
     # WHERE "2022-10-16" in (START_DATE, END_DATE)
     ORDER BY CAR_ID;
 -- >> 에러 : 2022-10-05 00:00:00 ~ 2022-11-14 00:00:00 일 때 결과 반대
+-- group by 없음
+
+
+
+-- 가격대 별 상품 개수 구하기
+SELECT FLOOR(PRICE*0.0001)*10000 AS PRICE_GROUP
+        ,COUNT(PRODUCT_ID) AS PRODUCTS
+    FROM PRODUCT
+    GROUP BY PRICE_GROUP
+    ORDER BY PRICE_GROUP
+-- >> FLOOR 자릿수?, round, ceil later
