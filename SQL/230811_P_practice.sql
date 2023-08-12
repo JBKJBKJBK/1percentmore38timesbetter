@@ -1,0 +1,51 @@
+-- 이름에 el이 들어가는 동물 찾기
+SELECT ANIMAL_ID, NAME
+    FROM ANIMAL_INS
+    WHERE ANIMAL_TYPE = 'Dog' 
+        AND (NAME LIKE '%EL%' OR NAME LIKE 'EL%' OR NAME LIKE '%EL')
+    ORDER BY NAME
+
+
+-- 중성화한 동물 찾기
+SELECT ANIMAL_ID, NAME,
+        CASE 
+        WHEN SEX_UPON_INTAKE LIKE 'Neutered%' THEN 'O'
+        WHEN SEX_UPON_INTAKE LIKE 'Spayed%' THEN 'O'
+        ELSE 'X' END AS 중성화
+    FROM ANIMAL_INS 
+    ORDER BY ANIMAL_ID;
+
+SELECT ANIMAL_ID, NAME,
+        IF (
+            SEX_UPON_INTAKE LIKE 'Neutered%'
+            OR SEX_UPON_INTAKE LIKE 'Spayed%'
+            , 'O'
+            , 'X')
+    FROM ANIMAL_INS 
+    ORDER BY ANIMAL_ID;
+
+
+-- 오랜 기간 보호한 동물(1)
+    SELECT NAME,  3
+ORDER BY DATETDATETIME
+FROM (
+    SELECT I.NAME, I.DATETIME
+            , RANK() OVER(ORDER BY I.DATETIME asc) AS rank3
+    FROM ANIMAL_INS AS I
+    LEFT JOIN ANIMAL_OUTS AS O
+    ON I.ANIMAL_ID = O.ANIMAL_ID
+    WHERE O.DATETIME is NULL
+    ) AS T
+WHERE rank3 <=IME;
+
+-- 오랜 기간 보호한 동물(2)
+SELECT ANIMAL_ID, NAME
+    FROM (
+        SELECT I.ANIMAL_ID, I.NAME
+                , RANK() OVER(ORDER BY datediff(O.DATETIME, I.DATETIME) DESC) AS LONGEST2
+        FROM ANIMAL_INS AS I
+        LEFT JOIN ANIMAL_OUTS AS O
+        ON I.ANIMAL_ID = O.ANIMAL_ID
+        WHERE O.DATETIME IS NOT NULL
+    ) AS T
+    WHERE LONGEST2 <= 2
